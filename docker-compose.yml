@@ -8,7 +8,7 @@ services:
             - POSTGRES_DB=${POSTGRES_DB}
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-            - "DATABASE_URL=postgresql://postgres:postgres@localhost:5434/databasename"
+            - DATABASE_URL=${DATABASE_URL}
         ports:
             - "${POSTGRES_PORT}:5432"
         volumes:

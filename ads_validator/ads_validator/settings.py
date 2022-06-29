@@ -92,10 +92,6 @@ WSGI_APPLICATION = 'ads_validator.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-POSTGRES_DB=env.db()
-# print(f" \n\n\n  database urls \n\n\n  {env.db_url()}")
-# DATABASE_URL="postgresql://postgres:postgres@localhost:5434/databasename"
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -110,7 +106,8 @@ DATABASES = {
     }
 }
 
-
+POSTGRES_DB=env.db(DATABASES)
+DATABASE_URL=env.db_url_config('DATABASE_URL')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -153,4 +150,6 @@ STATIC_URL = 'static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 SECRET_KEY=env("SECRET_KEY")
