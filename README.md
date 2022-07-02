@@ -2,17 +2,22 @@
 
 ## How to run the project
 
-Перед запуском убедитесь, что у Вас будет работать Makefile. 
-Убедитесь, что у Вас установлен и работает docker. 
+### Preconditions:
+Befor running you need to check that Makefile will wark in your system.
+Also you need to be sure that docker works in your system.
 
-1. **cd** в корневую папку проекта.
-Ориентируйтесь по makefile.
-2. Выполните команду make deploy
+## First way for installation
 
-Если не получилось, выполните команды из Makefile вручную. 
+Step:
+1. In console go to the project folder using **cd** command.
+Investigate and use **Makefile** as your map.
+2. Run command **make deploy**
 
+If it's not work please run commands from Makefile manually. 
+
+## Second way for installation
 Most important commands you can see in the **Makefile** file. 
-For start docker container please run the command (before it you need to install make util for run make scripts. Also you need to install docker)
+For start docker container please run the commands:
 
 ~~~
 make build  #Only first time for build docker container and after thet you need run second and 3th comand only
@@ -20,4 +25,5 @@ make up
 make run
 ~~~
 
-Please send message to us if you found any bugs
+## Contribution
+Please send a message to us if you found any issues/bugs
