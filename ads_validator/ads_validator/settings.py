@@ -14,6 +14,9 @@ from pathlib import Path
 from django.db import DEFAULT_DB_ALIAS
 import environ
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -105,9 +108,6 @@ DATABASES = {
         }
     }
 }
-
-POSTGRES_DB=env.db(DATABASES)
-DATABASE_URL=env.db_url_config('DATABASE_URL')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
