@@ -1,17 +1,19 @@
 prep:
 	sudo apt install python3.10-venv
 
-pyenv:
+env:
 	python3 -m venv env
 
-activ:
-	cd ./env/ |	source ./bin/activate | cd ..
+.PHONY: env
+
+act:
+	. ./env/bin/activate
 
 pip:
 	pip install -r requirements.txt
 
 build:
-	docker-compose up -d --build --remove-orphans
+	docker-compose up -d --build
 
 up:
 	docker-compose up -d
@@ -21,15 +23,14 @@ run:
 
 git:
 	git add .
-	git commit -m "${ARGS}"
+	git commit -m "${ARG}"
 	git push
 
 deploy:
+	cp -n .env.example .env
 	pip install -r requirements.txt
 	sudo apt install python3.10-venv
 	python3 -m venv env
-	cd env/
-	source ./bin/activate
-	cd ..
+	. ./env/bin/activate
 	docker-compose up -d --build
 	./ads_validator/manage.py runserver
