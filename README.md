@@ -1,6 +1,16 @@
 # Ads.txt Online Validator 
 
 ## How to run the project
+
+Перед запуском убедитесь, что у Вас будет работать Makefile. 
+Убедитесь, что у Вас установлен и работает docker. 
+
+1. **cd** в корневую папку проекта.
+Ориентируйтесь по makefile.
+2. Выполните команду make deploy
+
+Если не получилось, выполните команды из Makefile вручную. 
+
 Most important commands you can see in the **Makefile** file. 
 For start docker container please run the command (before it you need to install make util for run make scripts. Also you need to install docker)
 
@@ -10,3 +20,4 @@ make up
 make run
 ~~~
 
+Please send message to us if you found any bugs
