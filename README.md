@@ -8,7 +8,7 @@ Also you need to be sure that docker works in your system.
 
 ## First way for installation
 
-Step:
+Steps:
 1. In console go to the project folder using **cd** command.
 Investigate and use **Makefile** as your map.
 2. Run command **make deploy**
