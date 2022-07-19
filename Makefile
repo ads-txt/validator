@@ -6,6 +6,9 @@ env:
 
 .PHONY: env
 
+env2:
+	cp -n .env.example .env
+
 act:
 	. ./env/bin/activate
 
@@ -13,13 +16,22 @@ pip:
 	pip install -r requirements.txt
 
 build:
+	docker-compose up --build
+
+build2:
 	docker-compose up -d --build
 
 up:
-	docker-compose up -d
+	docker compose up -d
+
+down:
+	docker compose down
 
 run:
 	./ads_validator/manage.py runserver
+
+ansible:
+	python3 -m pip install --user ansible
 
 git:
 	git add .

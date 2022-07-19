@@ -3,8 +3,8 @@
 ## How to run the project
 
 ### Preconditions:
-Befor running you need to check that Makefile will wark in your system.
-Also you need to be sure that docker works in your system.
+Befor running you need to check that Makefile will work in your system.
+Also you need enshure that docker works in your system.
 
 ## First way for installation
 
@@ -27,3 +27,7 @@ make run
 
 ## Contribution
 Please send a message to us if you found any issues/bugs
+Danil Merkurev +7 916 836 16 65 (Telegram, WatsApp), danil.merkurev@yandex.com
+
+## Additional info
+**start.sh** is for ansible
