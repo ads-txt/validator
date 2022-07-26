@@ -2,7 +2,7 @@
 name = "ads-validator"
 version = "0.1.0"
 description = ""
-authors = ["Михаил Бадражан <mbadrazhan@migcredit.ru>", "Олег Латыш <olatysh@migcredit.ru>"]
+authors = ["Danil Merkurev <danil.merkurev@yandex.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

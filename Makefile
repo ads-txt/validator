@@ -38,6 +38,9 @@ git:
 	git commit -m "${ARG}"
 	git push
 
+fix:
+	sudo chown -R $USER .
+
 deploy:
 	cp -n .env.example .env
 	pip install -r requirements.txt
