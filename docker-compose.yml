@@ -25,11 +25,11 @@ services:
         # volumes:
         #     - app_volume2:/app/volume2
         ports:
-            - "8080:80"
+            - "8081:80"
         depends_on:
             - app
     database:
-        container_name: postgres
+        container_name: postgres2
         image: postgres
         restart: on-failure
         environment:
