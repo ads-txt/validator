@@ -19,10 +19,12 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
   PIP_DEFAULT_TIMEOUT=100 \
   POETRY_VERSION=1.1.12
 
-RUN python -m pip install -U pip && pip install poetry==$POETRY_VERSION
-
 RUN mkdir -p /app
 WORKDIR /app
+
+COPY requirements.txt /app/
+RUN python3 -m pip install -r requirements.txt
+RUN pip install poetry==$POETRY_VERSION
 
 COPY compose/app/start.sh .
 RUN ["chmod", "+x", "/app/start.sh"]

@@ -16,6 +16,8 @@ services:
             - app_validator:/app/ads_validator
         env_file:
             - ./compose.env
+        expose:
+            - "8002"
     nginx:
         image: ads-validator-nginx
         build:
@@ -24,6 +26,10 @@ services:
         restart: on-failure
         # volumes:
         #     - app_volume2:/app/volume2
+        # volumes:
+        #  - web-static:/www/static
+        links:
+            - app:app
         ports:
             - "8081:80"
         depends_on:

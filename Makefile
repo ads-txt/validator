@@ -12,6 +12,9 @@ env2:
 act:
 	. ./env/bin/activate
 
+act2:
+	sudo source env/bin/activate
+
 pip:
 	pip install -r requirements.txt
 
