@@ -19,19 +19,25 @@ pip:
 	pip install -r requirements.txt
 
 build:
-	docker-compose up --build
-
-build2:
-	docker-compose up -d --build
+	docker-compose build
 
 up:
 	docker compose up -d
 
-down:
-	docker compose down
+deploy:
+	export DOCKER_CLIENT_TIMEOUT=120
+	export COMPOSE_HTTP_TIMEOUT=120
+	docker-compose build
+	docker-compose up -d
 
-run:
-	./ads_validator/manage.py runserver
+
+down:
+	docker-compose down -v --rmi all
+
+app:
+	docker-compose run app bash
+#docker-compose run --name validator_container  -p 8000:8000 -e STATIC_ROOT=${APP_HOME}/static/ app
+#./ads_validator/manage.py runserver
 
 ansible:
 	python3 -m pip install --user ansible
@@ -42,13 +48,12 @@ git:
 	git push
 
 fix:
-	sudo chown -R $USER .
+	sudo chown -R ${USER} .
 
-deploy:
+deploy2:
 	cp -n .env.example .env
-	pip install -r requirements.txt
 	sudo apt install python3.10-venv
 	python3 -m venv env
 	. ./env/bin/activate
-	docker-compose up -d --build
-	./ads_validator/manage.py runserver
+	docker-compose build
+	docker-compose up -d

@@ -7,7 +7,7 @@ ARG APP_VERSION
 
 ENV APP_HOST 0.0.0.0
 ENV APP_PORT 8000
-ENV APP_WORKERS 2
+ENV APP_WORKERS 1
 ENV APP_WORKER_TIMEOUT 120
 
 ENV DJANGO_ENV=${DJANGO_ENV} \
@@ -19,42 +19,35 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
   PIP_DEFAULT_TIMEOUT=100 \
   POETRY_VERSION=1.1.12
 
-RUN mkdir -p /app
+# RUN mkdir -p /app
+
+ENV HOME=/app
+ENV APP_HOME=/app
+RUN mkdir $APP_HOME
+RUN mkdir -p $APP_HOME/static
+
 WORKDIR /app
 
-COPY requirements.txt /app/
-RUN python3 -m pip install -r requirements.txt
-RUN pip install poetry==$POETRY_VERSION
+# RUN addgroup --system danil && adduser --system --no-create-home --group danil && \
+#   chown -R danil:danil /usr && chmod -R 755 /usr
+# USER danil
+# COPY . /usr/src/app
 
-COPY compose/app/start.sh .
-RUN ["chmod", "+x", "/app/start.sh"]
-COPY poetry.lock pyproject.toml /app/
-
-RUN poetry config virtualenvs.create false \
-  && poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
+#chown -R $(docker-compose exec SERVICE_NAME id -u) ./
 
 COPY . /app/
-RUN echo "$APP_VERSION" > /app/.version
+COPY . requirements.txt /app/
+RUN  python3 -m pip install -r requirements.txt 
+RUN pip install poetry==$POETRY_VERSION
+COPY . poetry.lock pyproject.toml /app/
+COPY . compose/app/start.sh .
+
+
+RUN ["chmod", "+x", "/app/start.sh"] && \ 
+poetry config virtualenvs.create false && \
+poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi && \
+echo "$APP_VERSION" > /app/.version
+
+EXPOSE 8000
+
 CMD ["/app/start.sh"]
-
-
-# Install dependencies
-
-# COPY requirements.txt .
-# RUN pip install --user -r requirements.txt
-
-# PRODUCTION STAGE
-# Ensure logging is up to date despite possible buffering
-
-# # WORKDIR /opt/app
-# WORKDIR /usr/src/app
-
-# # Move sourcefiles
-
-# COPY requirements.txt ./
-# RUN pip install --no-cache-dir -r requirements.txt
-# COPY . .
-# CMD [ "python", "./your-daemon-or-script.py" ]
-# # Copy resources from build env
-# # COPY --from=build-stage /root/.local/ /usr/local/
-# # CMD ["/bin/bash"]
