@@ -15,17 +15,18 @@ services:
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
             - DATABASE_URL=${DATABASE_URL}
         ports:
-            - "5432:5432"
+            - "8001:5432"
         volumes:
-            - ./data/db:/var/lib/postgresql/data
+            - ./data/db:/var/lib/postgresql/pgdata
+#        command: sudo chown -R ${USER}:${USER}
     app:
         image: validator_container
         restart: always
         build:
             context: .
             dockerfile: compose/app/Dockerfile
-        # depends_on:
-        #     - database
+        depends_on:
+            - database
         volumes:
             - app_validator:/app/ads_validator
             - static_volume:/app/static
@@ -35,7 +36,8 @@ services:
             - "8000"
         ports:
             - "8000:8000"
-            - "5433:5432"
+        links:
+            - "database:database_alias"
     nginx:
         image: nginx_container
         build:

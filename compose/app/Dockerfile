@@ -19,14 +19,11 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
   PIP_DEFAULT_TIMEOUT=100 \
   POETRY_VERSION=1.1.12
 
-# RUN mkdir -p /app
+ENV WORKDIR=/app
 
-ENV HOME=/app
-ENV APP_HOME=/app
-RUN mkdir $APP_HOME
-RUN mkdir -p $APP_HOME/static
+RUN mkdir -p $WORKDIR/static
 
-WORKDIR /app
+WORKDIR $WORKDIR
 
 # RUN addgroup --system danil && adduser --system --no-create-home --group danil && \
 #   chown -R danil:danil /usr && chmod -R 755 /usr
@@ -35,18 +32,18 @@ WORKDIR /app
 
 #chown -R $(docker-compose exec SERVICE_NAME id -u) ./
 
-COPY . /app/
-COPY . requirements.txt /app/
+COPY . $WORKDIR/
+COPY . requirements.txt $WORKDIR/
 RUN  python3 -m pip install -r requirements.txt 
 RUN pip install poetry==$POETRY_VERSION
-COPY . poetry.lock pyproject.toml /app/
-COPY . compose/app/start.sh .
+COPY . poetry.lock pyproject.toml $WORKDIR/
+COPY . compose$WORKDIR/start.sh .
 
 
 RUN ["chmod", "+x", "/app/start.sh"] && \ 
 poetry config virtualenvs.create false && \
 poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi && \
-echo "$APP_VERSION" > /app/.version
+echo "$APP_VERSION" > $WORKDIR/.version
 
 EXPOSE 8000
 

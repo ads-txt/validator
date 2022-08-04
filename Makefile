@@ -47,8 +47,9 @@ git:
 	git commit -m "${ARG}"
 	git push
 
-fix:
-	sudo chown -R ${USER} .
+chown:
+	sudo chown -R ${USER}:${USER} ads_validator manage.py
+# sudo chown -R ${USER} .
 
 deploy2:
 	cp -n .env.example .env
