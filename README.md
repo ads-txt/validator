@@ -6,12 +6,16 @@
 Befor running you need to check that Makefile will work in your system.
 Also you need enshure that docker works in your system.
 
-## First way for installation
+## How to run? 
 
-Steps:
-1. In console go to the project folder using **cd** command.
-Investigate and use **Makefile** as your map.
-2. Run command **make deploy**
+**Just use these comands**: 
+make step1
+make step2
+. ./env/bin/activate
+make step3
+make step4
+
+
 
 If it's not work please run commands from Makefile manually. 
 
@@ -149,3 +153,7 @@ cat /var/log/docker.log
 Check that file for errors during docker startup.
 
 Also check if the user you’re running the command as is a member of the docker group. While insufficient permissions will not cause a FileNotFoundError(2, 'No such file or directory')), but a Permission denied, the error message might look similar in some cases.
+
+
+### Additional info
+Linked containers on the default bridge network share environment variables.

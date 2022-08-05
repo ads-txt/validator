@@ -1,16 +1,17 @@
-prep:
+step1:
 	sudo apt install python3.10-venv
 
-env:
+step2:
 	python3 -m venv env
 
-.PHONY: env
+# run command:   . ./env/bin/activate
 
-env2:
-	cp -n .env.example .env
+step3:
+	docker-compose build
 
-act:
-	. ./env/bin/activate
+step4:
+	docker compose up -d
+
 
 act2:
 	sudo source env/bin/activate
@@ -18,11 +19,7 @@ act2:
 pip:
 	pip install -r requirements.txt
 
-build:
-	docker-compose build
 
-up:
-	docker compose up -d
 
 deploy:
 	export DOCKER_CLIENT_TIMEOUT=120
@@ -34,7 +31,7 @@ deploy:
 down:
 	docker-compose down -v --rmi all
 
-app:
+bash:
 	docker-compose run app bash
 #docker-compose run --name validator_container  -p 8000:8000 -e STATIC_ROOT=${APP_HOME}/static/ app
 #./ads_validator/manage.py runserver
