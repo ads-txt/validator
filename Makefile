@@ -18,7 +18,6 @@ run:
 	docker compose up -d
 
 deploy:
-	cp -n .env ./compose/
 	export DOCKER_CLIENT_TIMEOUT=300
 	export COMPOSE_HTTP_TIMEOUT=300
 	export READ_TIMEOUT=300
