@@ -33,6 +33,9 @@ make run
 Please send a message to us if you found any issues/bugs
 Danil Merkurev +7 916 836 16 65 (Telegram, WatsApp), danil.merkurev@yandex.com
 
+
+#### Additional info
+
 ### Команды для работы с Docker Compose
 # Собирает сервисы, описанные в конфигурационных файлах
 docker-compose build
@@ -104,26 +107,7 @@ First, try to start it using
 ## IF Problem:
 While running a docker command like docker-compose pull, you see an error message like
 
-fix-docker-errors-dockerexception-error-while-fetching-server-api-version-connection-aborted-filenotfounderror2-no-such-file-or-directory.txt📋 Copy to clipboard⇓ Download
-Traceback (most recent call last):
-  File "/usr/bin/docker-compose", line 33, in <module>
-    sys.exit(load_entry_point('docker-compose==1.27.4', 'console_scripts', 'docker-compose')())
-  File "/usr/lib/python3.8/site-packages/compose/cli/main.py", line 67, in main
-    command()
-  File "/usr/lib/python3.8/site-packages/compose/cli/main.py", line 123, in perform_command
-    project = project_from_options('.', options)
-  File "/usr/lib/python3.8/site-packages/compose/cli/command.py", line 60, in project_from_options
-    return get_project(
-  File "/usr/lib/python3.8/site-packages/compose/cli/command.py", line 131, in get_project
-    client = get_client(
-  File "/usr/lib/python3.8/site-packages/compose/cli/docker_client.py", line 41, in get_client
-    client = docker_client(
-  File "/usr/lib/python3.8/site-packages/compose/cli/docker_client.py", line 170, in docker_client
-    client = APIClient(**kwargs)
-  File "/usr/lib/python3.8/site-packages/docker/api/client.py", line 197, in __init__
-    self._version = self._retrieve_server_version()
-  File "/usr/lib/python3.8/site-packages/docker/api/client.py", line 221, in _retrieve_server_version
-    raise DockerException(
+
 docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
 Solution:
 This means you haven’t started your docker service!
@@ -137,8 +121,7 @@ or
 fix-docker-errors-dockerexception-error-while-fetching-server-api-version-connection-aborted-filenotfounderror2-no-such-file-or-directory.sh📋 Copy to clipboard⇓ Download
 sudo service docker start
 or
-
-fix-docker-errors-dockerexception-error-while-fetching-server-api-version-connection-aborted-filenotfounderror2-no-such-file-or-directory.sh📋 Copy to clipboard⇓ Download
+### fix-docker-errors-dockerexception-error-while-fetching-server-api-version-connection-aborted-filenotfounderror2-no-such-file-or-directory.sh📋 Copy to clipboard⇓ Download
 sudo /etc/init.d/docker restart
 (whatever works with your distribution).
 
