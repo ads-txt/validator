@@ -9,7 +9,6 @@ networks:
         driver: bridge
 
 services:
-      
     nginx:
         image: nginx_container
         build:

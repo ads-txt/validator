@@ -22,7 +22,7 @@ deploy:
 	export COMPOSE_HTTP_TIMEOUT=300
 	export READ_TIMEOUT=300
 	docker-compose build
-	docker-compose up -d
+	docker-compose up
 
 
 down:

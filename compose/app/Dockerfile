@@ -35,9 +35,7 @@ WORKDIR $WORKDIR
 COPY . $WORKDIR/
 COPY . requirements.txt $WORKDIR/
 
-RUN  apt-get update && \
-python3 -m pip install -r requirements.txt && \
-apt-get -y install python-pip
+RUN python3 -m pip install -r requirements.txt
 RUN pip install poetry==$POETRY_VERSION
 COPY . poetry.lock pyproject.toml $WORKDIR/
 COPY . compose$WORKDIR/start.sh .
