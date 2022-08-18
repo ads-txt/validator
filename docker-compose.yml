@@ -54,7 +54,7 @@ services:
             - app_validator:/app/ads_validator
             - static_volume:/app/static
         env_file:
-            - ./compose.env
+            - ./.env
         expose:
             - "8081"
         ports:

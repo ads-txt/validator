@@ -3,6 +3,7 @@
 import os
 import sys
 import environ
+import django
 
 def main():
     """Run administrative tasks."""
