@@ -3,16 +3,15 @@
 ## How to run the project
 
 ### Preconditions:
-Befor running you need to check that Makefile will work in your system.
-Also you need enshure that docker works in your system.
+Befor running you need to check that Makefile will wark in your system.
+Also you need to be sure that docker works in your system.
 
-## How to run? 
+## First way for installation
 
-**Just use these comands**: 
-make step1
-make step2
-. ./env/bin/activate
-
+Steps:
+1. In console go to the project folder using **cd** command.
+Investigate and use **Makefile** as your map.
+2. Run command **make deploy**
 
 If it's not work please run commands from Makefile manually. 
 
@@ -27,5 +26,4 @@ make run
 ~~~
 
 ## Contribution
-Please send a message to us if you found any issues/bugs or create issue in our repository.
-Danil Merkurev +7 916 836 16 65 (Telegram, WatsApp), danil.merkurev@yandex.com
+Please send a message to us if you found any issues/bugs
