@@ -50,6 +50,7 @@ services:
             dockerfile: compose/app/Dockerfile
         depends_on:
             - database
+            - nginx
         volumes:
             - app_validator:/app/ads_validator
             - static_volume:/app/static

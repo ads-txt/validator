@@ -1,21 +1,14 @@
-step1:
-	docker-compose build
-
-step2:
-	READ_TIMEOUT=180
-	docker compose up -d
-
-run:
-	READ_TIMEOUT=180
-	docker compose up -d
-
 deploy:
+	cp -T example.env .env
 	export DOCKER_CLIENT_TIMEOUT=300
 	export COMPOSE_HTTP_TIMEOUT=300
 	export READ_TIMEOUT=300
 	docker-compose build
 	docker-compose up -d
 	echo -e "\a"
+
+up:
+	docker-compose up -d
 
 down:
 	docker-compose down -v --rmi all
@@ -33,18 +26,9 @@ git:
 
 chown:
 	sudo chown -R ${USER}:${USER} ads_validator manage.py
-# sudo chown -R ${USER} .
-
-deploy2:
-	cp -n .env.example .env
-	sudo apt install python3.10-venv
-	docker-compose run python3 -m venv env
-	. ./env/bin/activate
-	docker-compose build
-	docker-compose up -d
 
 port:
-	fuser -vn tcp ${PORT}
+	fuser -vn tcp ${ARG}
 
 port2:
-	sudo kill -9 ${PROC}
+	sudo kill -9 ${ARG}

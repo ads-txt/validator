@@ -25,13 +25,6 @@ RUN mkdir -p $WORKDIR/static
 
 WORKDIR $WORKDIR
 
-# RUN addgroup --system danil && adduser --system --no-create-home --group danil && \
-#   chown -R danil:danil /usr && chmod -R 755 /usr
-# USER danil
-# COPY . /usr/src/app
-
-#chown -R $(docker-compose exec SERVICE_NAME id -u) ./
-
 COPY . $WORKDIR/
 COPY . requirements.txt $WORKDIR/
 
