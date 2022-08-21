@@ -1,36 +1,34 @@
-prep:
-	sudo apt install python3.10-venv
-
-env:
-	python3 -m venv env
-
-.PHONY: env
-
-act:
-	. ./env/bin/activate
-
-pip:
-	pip install -r requirements.txt
-
-build:
-	docker-compose up -d --build
+deploy:
+	cp -T example.env .env
+	export DOCKER_CLIENT_TIMEOUT=300
+	export COMPOSE_HTTP_TIMEOUT=300
+	export READ_TIMEOUT=300
+	docker-compose build
+	docker-compose up -d
+	echo -e "\a"
 
 up:
 	docker-compose up -d
 
-run:
-	./ads_validator/manage.py runserver
+down:
+	docker-compose down -v --rmi all
+
+cont-bash:
+	docker-compose exec app bash
+
+ansible:
+	python3 -m pip install --user ansible
 
 git:
 	git add .
 	git commit -m "${ARG}"
 	git push
 
-deploy:
-	cp -n .env.example .env
-	pip install -r requirements.txt
-	sudo apt install python3.10-venv
-	python3 -m venv env
-	. ./env/bin/activate
-	docker-compose up -d --build
-	./ads_validator/manage.py runserver
+chown:
+	sudo chown -R ${USER}:${USER} ads_validator manage.py
+
+port:
+	fuser -vn tcp ${ARG}
+
+port2:
+	sudo kill -9 ${ARG}
