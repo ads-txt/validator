@@ -4,3 +4,4 @@ env/
 data/
 __pycache__/
 backup/
+.env
